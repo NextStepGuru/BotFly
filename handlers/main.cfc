@@ -1,0 +1,1 @@
+﻿component output="false" cache="true"{	property name="log"		inject="logbox:logger:{this}";	void function index(event,rc,prc){		setNextEvent(getSetting('DefaultEvent'));	}}
