@@ -1,5 +1,8 @@
 BotFly is a companion application that works with ColdBox 3.5beta (latest dev branch). It has only been tested within Railo 3.3.2.
 
+What does BotFly do?
+ - Provide basic application structures for ColdBox to help expedite application development. It also provides latest CSS/JS best coding practices to help keep you on the right directory.
+
 How to install:
  - Clone repo to local disk.
  - Download ColdBox 3.5 Dev Branch and install within BotFly's directory
