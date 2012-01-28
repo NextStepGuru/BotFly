@@ -11,7 +11,7 @@
 	COLDBOX_APP_KEY       = "";
 
 	this.ormEnabled = true;
-	this.datasource = "logfly";
+	this.datasource = "botfly";
 	this.ormSettings 	= {
 		flushAtRequestEnd		= false,
 		automanageSession		= false,
@@ -24,7 +24,7 @@
 		skipCFCWithError		= true,
 		cacheprovider			= "ehCache",
 		dbcreate				= "none",
-		eventHandler			= "flybox.model.EventHandler",
+		eventHandler			= "botfly.model.EventHandler",
 		cfclocation				= "model"
 	};
 

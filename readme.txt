@@ -7,6 +7,8 @@ How to install:
  - Clone repo to local disk.
  - Download ColdBox 3.5 Dev Branch and install within BotFly's directory
  - Install Railo 3.3.2 and point to directory
+ - Setup Datasource called BotFly.
+ - Edit /config/Coldbox.cfc and replace any {x} with the correct values
 
 Unmodified OpenSource Projects Included
  - ColdBox Framework by Luis Majano and Ortus Solutions, Corp - Copyright 2005-2007

@@ -4,7 +4,7 @@ component output="false" hint="coldBox"{
 
 		coldbox = {
 
-			appName 					= "coldBox",
+			appName 					= "{botfly}",
 			eventName 					= "event",
 			debugMode					= false,
 			debugPassword				= "",
@@ -12,23 +12,23 @@ component output="false" hint="coldBox"{
 			handlersIndexAutoReload 	= false,
 			configAutoReload			= false,
 			defaultEvent				= "general.index",
-			requestStartHandler			= "flyboxDefault.onRequestStart",
-			requestEndHandler			= "flyboxDefault.onRequestEnd",
-			applicationStartHandler 	= "flyboxDefault.onAppInit",
-			applicationEndHandler		= "flyboxDefault.onAppEnd",
-			sessionStartHandler 		= "flyboxDefault.onSessionStart",
-			sessionEndHandler			= "flyboxDefault.onSessionEnd",
-			missingTemplateHandler		= "flyboxDefault.onMissingTemplate",
-			UDFLibraryFile 				= "flybox/udf/udf.cfm",
+			requestStartHandler			= "botflyDefault.onRequestStart",
+			requestEndHandler			= "botflyDefault.onRequestEnd",
+			applicationStartHandler 	= "botflyDefault.onAppInit",
+			applicationEndHandler		= "botflyDefault.onAppEnd",
+			sessionStartHandler 		= "botflyDefault.onSessionStart",
+			sessionEndHandler			= "botflyDefault.onSessionEnd",
+			missingTemplateHandler		= "botflyDefault.onMissingTemplate",
+			UDFLibraryFile 				= "botfly/udf/udf.cfm",
 			coldboxExtensionsLocation 	= "",
-			modulesExternalLocation		= ["flybox/modules"],
-			pluginsExternalLocation 	= "flybox/plugins",
-			viewsExternalLocation		= "flybox/views",
-			layoutsExternalLocation 	= "flybox/layouts",
-			handlersExternalLocation  	= "flybox/handlers",
-			requestContextDecorator 	= "flybox.model.RequestContextDecorator",
-			exceptionHandler			= "flyboxDefault.onException",
-			onInvalidEvent				= "flyboxDefault.onInvalidEvent",
+			modulesExternalLocation		= ["botfly/modules"],
+			pluginsExternalLocation 	= "botfly/plugins",
+			viewsExternalLocation		= "botfly/views",
+			layoutsExternalLocation 	= "botfly/layouts",
+			handlersExternalLocation  	= "botfly/handlers",
+			requestContextDecorator 	= "botfly.model.RequestContextDecorator",
+			exceptionHandler			= "botflyDefault.onException",
+			onInvalidEvent				= "botflyDefault.onInvalidEvent",
 			customErrorTemplate			= "",
 			handlerCaching 				= true,
 			eventCaching				= true,
@@ -38,16 +38,16 @@ component output="false" hint="coldBox"{
 
 		// custom settings
 		settings = {
-			s3Access = "1TNVKRF63MSSVZY4HHG2",
-			s3Secret = "vdpeY4LMJrgOnUYFjc77ZWYKRdefur07dBCpXX1x",
+			s3Access = "{S3Access}",
+			s3Secret = "{S3Secret}",
 			jsmin_cacheLocation = '/assets/cache',
 			jsmin_enable = true,
 			minify_html = true,
-			emailYak_api = 'qui7efnusdq120k',
+			emailYak_api = '{EmailYak}',
 			messagebox_style_override = true,
 			framelessGrid_debug = true,
 			site = {
-				title = 'logFly | Offsite Logging',
+				title = '{Title}',
 
 				// loads site specific js/css files
 				asset = [
@@ -89,15 +89,15 @@ component output="false" hint="coldBox"{
 				EmailAppender = {
 					class="coldbox.system.logging.appenders.EmailAppender",
 					properties={
-						subject = "LogFly",
-						from = "info@logfly.us",
-						to = "jeremy.deyoung@lunarfly.com",
+						subject = "{Subject}",
+						from = "{FromEmail}",
+						to = "{ToEmail}",
 			            mailserver = "smtp.postmarkapp.com",
-			            mailusername = "f84934ef-7f4f-4443-a488-f039215f2e0e",
-			            mailpassword = "f84934ef-7f4f-4443-a488-f039215f2e0e",
+			            mailusername = "{PostmarkAPI}",
+			            mailpassword = "{PostmarkAPI}",
 			            mailport = 25
 					},
-					layout="flybox.model.email.emailLayouts"
+					layout="botfly.model.email.emailLayouts"
 				}
 			},
 			// Root Logger
@@ -139,10 +139,10 @@ component output="false" hint="coldBox"{
 			 properties={}
 			},
 			//Detect Device
-			{class="flybox.interceptors.detectDevice",
+			{class="botfly.interceptors.detectDevice",
 			 properties={}
 			},
-			{class="flybox.interceptors.minify",
+			{class="botfly.interceptors.minify",
 			 properties={}
 			}
 		];
@@ -172,14 +172,14 @@ component output="false" hint="coldBox"{
 			protocol = {
 				class = "coldbox.system.core.mail.protocols.PostmarkProtocol",
 				properties = {
-					apiKey = "f84934ef-7f4f-4443-a488-f039215f2e0e"
+					apiKey = "{PostmarkAPI}"
 				}
 			}
 		};
 
 		//Datasources
 		datasources = {
-			mpt_dsn = {name="qz", dbType="mysql", username="qz", password="noah$1jrd$1"}
+			mpt_dsn = {name="botfly", dbType="mysql", username="{botfly}", password="{botfly}"}
 		};
 	}
 

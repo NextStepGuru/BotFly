@@ -20,6 +20,7 @@ Crawl-delay: 100
 Disallow:
 
 User-Agent: *
+Disallow: /botfly/
 Disallow: /config/
 Disallow: /handlers/
 Disallow: /includes/
