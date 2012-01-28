@@ -11,7 +11,7 @@
 	COLDBOX_APP_KEY       = "";
 
 	this.ormEnabled = true;
-	this.datasource = "botfly";
+	this.datasource = "{botfly}";
 	this.ormSettings 	= {
 		flushAtRequestEnd		= false,
 		automanageSession		= false,
