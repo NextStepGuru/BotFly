@@ -1,0 +1,32 @@
+.MessageBox {display:table;margin:auto auto;
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	border-radius: 16px;
+}
+
+.cbox_messagebox{
+	padding:15px 10px 15px 46px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	border: 1px solid;
+}
+
+.cbox_messagebox_info{
+color: #00529B;
+background: #BDE5F8 url('/botfly/images/botfly/info.png') no-repeat 8px center;
+}
+
+.cbox_messagebox_success{
+color: #4F8A10;
+background: #DFF2BF url('/botfly/images/botfly/success.png') no-repeat 8px center;
+}
+
+.cbox_messagebox_warning{
+color: #9F6000;
+background: #FEEFB3 url('/botfly/images/botfly/warning.png') no-repeat 8px center;
+}
+
+.cbox_messagebox_error{
+color: #D8000C;
+background:  #FFBABA url('/botfly/images/botfly/error.png') no-repeat 8px center;
+}

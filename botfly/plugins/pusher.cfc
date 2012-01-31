@@ -13,9 +13,9 @@
 	<cfset variables.pusherHost = "api.pusherapp.com">
 
 	<!--- Either declare your Pusher info here, or use the init method --->
-	<cfset variables.pusherApplicationId = "13345">
-	<cfset variables.pusherApplicationKey = "c975fa2d708557e23eb7">
-	<cfset variables.pusherApplicationSecret = "37b7c300a41a90849f88">
+	<cfset variables.pusherApplicationId = "">
+	<cfset variables.pusherApplicationKey = "">
+	<cfset variables.pusherApplicationSecret = "">
 
 	<!---
 	 * Initializes the component, if you want, or just paste your details above.
@@ -25,6 +25,25 @@
 	 * @return
 	--->
 	<cffunction name="init" access="public" output="no">
+
+		<cfreturn this>
+	</cffunction>
+
+	<cffunction name="setAppID" access="public" output="no">
+		<cfargument name="appID" required="yes">
+		<cfset variables.pusherApplicationId = appID>
+
+		<cfreturn this>
+	</cffunction>
+	<cffunction name="setAppKey" access="public" output="no">
+		<cfargument name="appKey" required="yes">
+		<cfset variables.pusherApplicationKey = appKey>
+
+		<cfreturn this>
+	</cffunction>
+	<cffunction name="setAppSecret" access="public" output="no">
+		<cfargument name="appSecret" required="yes">
+		<cfset variables.pusherApplicationSecret = appSecret>
 
 		<cfreturn this>
 	</cffunction>

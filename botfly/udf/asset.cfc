@@ -2,7 +2,7 @@
 
 	public query function buildAssetsData(){
 
-		return queryNew("asset,priority,code,head","string,numeric,string,boolean");
+		return queryNew("asset,priority,code,head,filter","string,numeric,string,boolean,string");
 	}
 
 	public struct function buildMetaData(){
@@ -15,7 +15,12 @@
 		var assets = arrayNew(1);
 		var combinCSS = arrayNew(1);
 		var combinJS = arrayNew(1);
-		var qry = new query(sql="SELECT * FROM prc WHERE head = 1 ORDER BY priority DESC",prc=prc.assets,dbtype='query').execute().getResult();
+		if(rc.device.isMobileAgent eq true && rc.device.isTablet eq false){
+			var filter = 'mobile';
+		}else{
+			var filter = 'web';
+		}
+		var qry = new query(sql="SELECT * FROM prc WHERE head = 1 AND (filter = 'any' OR filter='#filter#') ORDER BY priority DESC",prc=prc.assets,dbtype='query').execute().getResult();
 		var prefix = "";
 		if(settingExists('jsmin_prefix_url')){
 			prefix = getSetting('jsmin_prefix_url');
@@ -39,7 +44,7 @@
 			arrayAppend(returnArr,replace(getMyPlugin("JSMin").minify(arrayToList(combinJS)),'/assets/',prefix & '/assets/'));
 		}
 
-		return arrayToList(returnArr,'');
+		return arrayToList(returnArr,chr(10));
 	}
 
 	public string function renderFooterAssets(){
@@ -47,7 +52,12 @@
 		var assets = arrayNew(1);
 		var combinCSS = arrayNew(1);
 		var combinJS = arrayNew(1);
-		var qry = new query(sql="SELECT * FROM prc WHERE head = 0 ORDER BY priority DESC",prc=prc.assets,dbtype='query').execute().getResult();
+		if(rc.device.isMobileAgent eq true && rc.device.isTablet eq false){
+			var filter = 'mobile';
+		}else{
+			var filter = 'web';
+		}
+		var qry = new query(sql="SELECT * FROM prc WHERE head = 0 AND (filter = 'any' OR filter='#filter#') ORDER BY priority DESC",prc=prc.assets,dbtype='query').execute().getResult();
 		var prefix = "";
 		if(settingExists('jsmin_prefix_url')){
 			prefix = getSetting('jsmin_prefix_url');
@@ -70,7 +80,7 @@
 		if(arrayLen(combinJS) gt 0){
 			arrayAppend(returnArr,replace(getMyPlugin("JSMin").minify(arrayToList(combinJS)),'/assets/',prefix & '/assets/'));
 		}
-		return arrayToList(returnArr,'');
+		return arrayToList(returnArr,chr(10));
 	}
 
 
@@ -87,7 +97,7 @@
 				break;
 			case "framelessGrid":
 				//framelessGrid
-				addAsset(asset="/assets/css/frameless.css",sendToHeader=true,priority=arguments.priority,assetType='css');
+				addAsset(asset="/botfly/css/framelessGrid/frameless.css",sendToHeader=true,priority=arguments.priority,assetType='css');
 
 				if(settingExists('framelessGrid_debug') && getSetting('framelessGrid_debug')){
 					//only display the grid if debug it turned on in settings within Coldbox Config
@@ -101,20 +111,25 @@
 			case "jqueryUI":
 				//jqueryUI 1.8.16
 				addAsset(asset="/botfly/css/jQueryUI/ui-lightness/jquery-ui-1.8.16.custom.css",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='css');
-				addAsset(asset="/botfly/js/jQueryUI/jQueryUI.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority);
+				addAsset(asset="/botfly/js/jQueryUI/jQueryUI.js",sendToHeader=true,priority=arguments.priority);
 				break;
 			case "jqueryValidate":
-				addAsset(asset="/botfly/css/validationEngine/validationEngine.jquery.css",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='css');
-				addAsset(asset="/botfly/js/validationEngine/jquery.validationEngine.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority);
-				addAsset(asset="/botfly/js/validationEngine/languages/jquery.validationEngine-en.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority);
+				addAsset(asset="/botfly/css/validationEngine/validationEngine.jquery.css",sendToHeader=true,priority=arguments.priority,assetType='css');
+				addAsset(asset="/botfly/js/validationEngine/jquery.validationEngine.js",sendToHeader=true,priority=arguments.priority);
+				addAsset(asset="/botfly/js/validationEngine/languages/jquery.validationEngine-en.js",sendToHeader=true,priority=arguments.priority);
 				break;
+			case "pusher":
+				//pusher
+				addAsset(asset="http://js.pusher.com/1.11/pusher.min.js",sendToHeader=true,priority=100);
+				break;
+
 			default:
 				throw('Unknown Asset Library','addAssetLibrary.UDF');
 		}
 
 	}
 
-	public void function addAsset(required string asset,required boolean sendToHeader=false,required boolean async=false,required numeric priority=0,required string assetType='js'){
+	public void function addAsset(required string asset,required boolean sendToHeader=false,required boolean async=false,required numeric priority=0,required string assetType='js',required string filter='any'){
 		var prc = controller.getRequestService().getContext().getCollection(private=true);
 		var returnCode = arguments.asset;
 		var returnAsset = arguments.asset;
@@ -147,6 +162,7 @@
 				querySetCell(prc.assets,'priority',arguments.priority,prc.assets.recordCount);
 				querySetCell(prc.assets,'head',arguments.sendToHeader,prc.assets.recordCount);
 			}
+			querySetCell(prc.assets,'filter',arguments.filter,prc.assets.recordCount);
 		}
 
 	}

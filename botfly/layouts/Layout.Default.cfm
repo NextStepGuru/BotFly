@@ -8,22 +8,27 @@
 		<head>
 			#renderHeadAssets()#
 			#renderHeaderAssets()#
-			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 		</head>
 		<body>
 			<div class="container">
-				<article class='article'>
-					<nav class='nav primary'>
-						#renderView('includes/header')#
-					</nav>
+				<header class="header">
+					#renderView('includes/header')#
+				</header>
+				<cfif !getPlugin("MessageBox").isEmpty()>
+					<div class="MessageBox">#getPlugin("MessageBox").renderit()#</div>
+				</cfif>
+				<div id="main">
+					<article class="article">
 					#renderView()#
-					<nav class="nav footer">
-						#renderView('includes/footer')#
-					</nav>
-				</article>
-				#renderFooterAssets()#
-				#renderView('includes/google')#
+					</article>
+				</div>
+				<footer class="footer">
+					#renderView('includes/footer')#
+				</footer>
 			</div>
+			#renderFooterAssets()#
+			#renderView('includes/google')#
 		</body>
 	</html>
 </cfoutput>

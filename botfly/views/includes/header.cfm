@@ -1,3 +1,3 @@
-﻿<header>
-	<h1>Default Header</h1>
-</header>
+﻿<cfoutput>
+	<h1>Header</h1>
+</cfoutput>

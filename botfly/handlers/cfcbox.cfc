@@ -367,7 +367,7 @@
 //******************************************* OLD EVENTS **********************************************//
 
 	public 	void 	function oldindex(required any event,required any rc,required any prc){
-		arguments.rc.meta.title = 'CFC Box';
+		arguments.prc.meta.title = 'CFC Box';
 
 		var allTables = new query(sql="SHOW TABLES;").execute().getResult();
 		var findColumnName = allTables.columnList;
