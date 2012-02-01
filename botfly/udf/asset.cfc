@@ -87,26 +87,20 @@
 	public void function addAssetLibrary(required string library='jquery',required boolean sendToHeader=false,required boolean async=false,required numeric priority=0){
 		switch(arguments.library){
 			case "formalize":
-				//formalize
 				addAsset(asset="/botfly/github/formalize/assets/css/formalize.css",sendToHeader=true,priority=arguments.priority,assetType='css');
 				addAsset(asset="/botfly/github/formalize/assets/js/formalize.js",sendToHeader=false,priority=arguments.priority,assetType='js');
 				break;
 			case "normalizeCSS":
-				//normalizeCSS
 				addAsset(asset="/botfly/github/normalize.css/normalize.css",sendToHeader=true,priority=arguments.priority,assetType='css');
 				break;
 			case "framelessGrid":
-				//framelessGrid
-				addAsset(asset="/botfly/css/framelessGrid/frameless.css",sendToHeader=true,priority=arguments.priority,assetType='css');
-
+				addAsset(asset="/botfly/github/Frameless/frameless.css",sendToHeader=true,priority=arguments.priority,assetType='css');
 				if(settingExists('framelessGrid_debug') && getSetting('framelessGrid_debug')){
-					//only display the grid if debug it turned on in settings within Coldbox Config
-					addAsset(asset="/botfly/js/frameless/frameless.js",sendToHeader=true,priority=arguments.priority,assetType='js');
+					addAsset(asset="/botfly/github/Frameless/frameless.js",sendToHeader=true,priority=arguments.priority,assetType='js');
 				}
 				break;
 			case "jquery":
-				//jquery 1.7.1
-				addAsset(asset="/botfly/js/jQuery/jQuery.js",sendToHeader=true,priority=1000);
+				addAsset(asset="/botfly/github/jquery/dist/jquery.js",sendToHeader=true,priority=1000,assetType='js');
 				break;
 			case "jqueryUI":
 				addAsset(asset="/botfly/github/jquery-ui/ui/jquery.ui.core.js",sendToHeader=true,priority=500,assetType='js');
@@ -137,10 +131,23 @@
 				addAsset(asset="/botfly/github/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js",sendToHeader=true,priority=arguments.priority);
 				break;
 			case "pusher":
-				//pusher
 				addAsset(asset="http://js.pusher.com/1.11/pusher.min.js",sendToHeader=true,priority=100);
 				break;
-
+			case "jQuerySimplePager":
+				addAsset(asset="/botfly/github/simplepager/scripts/quickpager.jquery.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='js');
+				break;
+			case "jQuerySlideJS":
+				addAsset(asset="/botfly/github/Slides/source/slides.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='js');
+				break;
+			case "geoLocation":
+				addAsset(asset="/botfly/googleCode/geoLocationJavascript/geo.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='js');
+				break;
+			case "jqueryMouseWheel":
+				addAsset(asset="/botfly/github/jquery-mousewheel/jquery.mousewheel.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='js');
+				break;
+			case "jqueryCloudCarousel":
+				addAsset(asset="/botfly/jquery/CloudCarousel/cloud-carousel.1.0.5.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='js');
+				break;
 			default:
 				throw('Unknown Asset Library','addAssetLibrary.UDF');
 		}

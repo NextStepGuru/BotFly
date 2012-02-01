@@ -7,7 +7,7 @@
  *
  * Revision: $Rev: 62 $: 
  * Author: $Author: whoisstan $:
- * Date: $Date: 2009-12-17 15:46:49 -0500 (Thu, 17 Dec 2009) $:    
+ * Date: $Date: 2009-12-17 14:46:49 -0600 (Thu, 17 Dec 2009) $:    
  */
 var geo_position_js_simulator=function(){
 
