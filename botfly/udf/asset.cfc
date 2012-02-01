@@ -88,8 +88,8 @@
 		switch(arguments.library){
 			case "formalize":
 				//formalize
-				addAsset(asset="/botfly/css/formalize/formalize.css",sendToHeader=true,priority=arguments.priority,assetType='css');
-				addAsset(asset="/botfly/js/formalize/formalize.js",sendToHeader=false,priority=arguments.priority,assetType='js');
+				addAsset(asset="/botfly/github/formalize/assets/css/formalize.css",sendToHeader=true,priority=arguments.priority,assetType='css');
+				addAsset(asset="/botfly/github/formalize/assets/js/formalize.js",sendToHeader=false,priority=arguments.priority,assetType='js');
 				break;
 			case "normalizeCSS":
 				//normalizeCSS
