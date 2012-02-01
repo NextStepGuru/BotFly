@@ -133,7 +133,7 @@
 				break;
 			case "jqueryValidate":
 				addAsset(asset="/botfly/github/jQuery-Validation-Engine/css/validationEngine.jquery.css",sendToHeader=true,priority=arguments.priority,assetType='css');
-				addAsset(asset="/botfly/github/jQuery-Validation-Engine/js/validationEngine/jquery.validationEngine.js",sendToHeader=true,priority=arguments.priority);
+				addAsset(asset="/botfly/github/jQuery-Validation-Engine/js/jquery.validationEngine.js",sendToHeader=true,priority=arguments.priority);
 				addAsset(asset="/botfly/github/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js",sendToHeader=true,priority=arguments.priority);
 				break;
 			case "pusher":
