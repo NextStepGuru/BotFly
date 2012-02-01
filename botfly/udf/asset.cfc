@@ -140,6 +140,7 @@
 				addAsset(asset="/botfly/github/Slides/source/slides.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='js');
 				break;
 			case "geoLocation":
+				addAsset(asset="http://code.google.com/apis/gears/gears_init.js",sendToHeader=true,assetType='js');
 				addAsset(asset="/botfly/googleCode/geoLocationJavascript/geo.js",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='js');
 				break;
 			case "jqueryMouseWheel":
