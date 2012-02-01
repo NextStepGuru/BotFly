@@ -38,14 +38,18 @@ component output="false" hint="coldBox"{
 
 		// custom settings
 		settings = {
-			s3Access = "{S3Access}",
-			s3Secret = "{S3Secret}",
-			jsmin_cacheLocation = '/assets/cache',
-			jsmin_enable = true,
-			minify_html = true,
-			emailYak_api = '{EmailYak}',
-			messagebox_style_override = true,
-			framelessGrid_debug = true,
+			s3Access 					= "{S3Access}",
+			s3Secret 					= "{S3Secret}",
+			jsmin_cacheLocation 		= '/assets/cache',
+			jsmin_enable 				= true,
+			minify_html 				= true,
+			emailYak_api 				= '{EmailYak}',
+			messagebox_style_override 	= true,
+			pusher_logger				= true,
+			pusher_key 					= '{PusherKey}',
+			pusher_secret 				= '{PusherSecret}',
+			pusher_appID 				= '{PusherAppID}',
+			framelessGrid_debug 		= true,
 			site = {
 				title = '{Title}',
 
@@ -150,21 +154,21 @@ component output="false" hint="coldBox"{
 
 		//Debugger Settings
 		debugger = {
-			enableDumpVar = false,
-			persistentRequestProfilers = true,
-			maxPersistentRequestProfilers = 10,
-			maxRCPanelQueryRows = 50,
+			enableDumpVar 					= false,
+			persistentRequestProfilers 		= true,
+			maxPersistentRequestProfilers 	= 10,
+			maxRCPanelQueryRows 			= 50,
 			//Panels
-			showTracerPanel = true,
-			expandedTracerPanel = false,
-			showInfoPanel = true,
-			expandedInfoPanel = false,
-			showCachePanel = false,
-			expandedCachePanel = false,
-			showRCPanel = false,
-			expandedRCPanel = false,
-			showModulesPanel = false,
-			expandedModulesPanel = false
+			showTracerPanel 				= true,
+			expandedTracerPanel 			= false,
+			showInfoPanel 					= true,
+			expandedInfoPanel 				= false,
+			showCachePanel 					= false,
+			expandedCachePanel 				= false,
+			showRCPanel 					= false,
+			expandedRCPanel 				= false,
+			showModulesPanel 				= false,
+			expandedModulesPanel 			= false
 		};
 
 		//Mailsettings
@@ -179,29 +183,29 @@ component output="false" hint="coldBox"{
 
 		//Datasources
 		datasources = {
-			mpt_dsn = {name="botfly", dbType="mysql", username="{botfly}", password="{botfly}"}
+			dsn = {name="{botfly}", dbType="mysql", username="{botfly}", password="{botfly}"}
 		};
 	}
 
     function development()
     {
     	// coldbox overrides
-		coldbox.customErrorTemplate			= "";
-		coldbox.handlerCaching 				= false;
-		coldbox.eventCaching				= false;
+		coldbox.customErrorTemplate		= "";
+		coldbox.handlerCaching 			= false;
+		coldbox.eventCaching			= false;
 
         //Debugger overrides
-		debugger.showTracerPanel = true;
-		debugger.showInfoPanel = true;
+		debugger.showTracerPanel 		= true;
+		debugger.showInfoPanel 			= true;
 
 		//LogBox DSL
 		logBox = {
 			// Define Appenders
 			appenders = {
-				coldboxTracer = { class="coldbox.system.logging.appenders.ColdboxTracerAppender" }
+				coldboxTracer 			= { class="coldbox.system.logging.appenders.ColdboxTracerAppender" }
 			},
 			// Root Logger
-			root = { levelMin="FATAL", levelMax="WARN", appenders="*" }
+			root 						= { levelMin="FATAL", levelMax="WARN", appenders="*" }
 		};
    	}
 }
