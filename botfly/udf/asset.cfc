@@ -93,7 +93,7 @@
 				break;
 			case "normalizeCSS":
 				//normalizeCSS
-				addAsset(asset="/botfly/css/normalize/normalize.css",sendToHeader=true,priority=arguments.priority,assetType='css');
+				addAsset(asset="/botfly/github/normalize.css/normalize.css",sendToHeader=true,priority=arguments.priority,assetType='css');
 				break;
 			case "framelessGrid":
 				//framelessGrid
@@ -110,13 +110,21 @@
 				break;
 			case "jqueryUI":
 				//jqueryUI 1.8.16
-				addAsset(asset="/botfly/css/jQueryUI/ui-lightness/jquery-ui-1.8.16.custom.css",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='css');
-				addAsset(asset="/botfly/js/jQueryUI/jQueryUI.js",sendToHeader=true,priority=arguments.priority);
+				var files = getJQueryUIFiles('js');
+				for(var i=1;i<=files.recordCount;i++){
+					addAsset(asset="/botfly/github/jquery-ui/ui/#files.name[i]#",sendToHeader=true,priority=arguments.priority,assetType='js');
+				}
+				var files = getJQueryUIFiles('css');
+				for(var i=1;i<=files.recordCount;i++){
+					if(!listFind('jquery.ui.all.css,jquery.ui.base.css,jquery.ui.core.css',files.name[i])){
+						addAsset(asset="/botfly/github/jquery-ui/themes/base/#files.name[i]#",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='css');
+					}
+				}
 				break;
 			case "jqueryValidate":
-				addAsset(asset="/botfly/css/validationEngine/validationEngine.jquery.css",sendToHeader=true,priority=arguments.priority,assetType='css');
-				addAsset(asset="/botfly/js/validationEngine/jquery.validationEngine.js",sendToHeader=true,priority=arguments.priority);
-				addAsset(asset="/botfly/js/validationEngine/languages/jquery.validationEngine-en.js",sendToHeader=true,priority=arguments.priority);
+				addAsset(asset="/botfly/github/jQuery-Validation-Engine/css/validationEngine.jquery.css",sendToHeader=true,priority=arguments.priority,assetType='css');
+				addAsset(asset="/botfly/github/jQuery-Validation-Engine/js/validationEngine/jquery.validationEngine.js",sendToHeader=true,priority=arguments.priority);
+				addAsset(asset="/botfly/github/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js",sendToHeader=true,priority=arguments.priority);
 				break;
 			case "pusher":
 				//pusher
@@ -206,5 +214,14 @@
 		s.id = arguments.id;
 
 		return s;
+	}
+
+	private any function getJQueryUIFiles(required string type){
+		var files = "";
+		if(arguments.type eq 'js'){
+			directory name="files" action="list" filter="*.js" directory="#getDirectoryFromPath(expandPath('./'))#/botfly/github/jquery-ui/ui";
+		}else{
+			directory name="files" action="list" filter="*.css" directory="#getDirectoryFromPath(expandPath('./'))#/botfly/github/jquery-ui/themes/base/";
+		}
 	}
 }
