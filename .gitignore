@@ -1,3 +1,7 @@
 
 WEB-INF/*
 botfly/.svn/*
+/botfly/github/Aloha-Editor/.git/*
+/botfly/github/jquery-ui/.git/*
+/botfly/github/jQuery-Validation-Engine/.git/*
+/botfly/github/normalize.css/.git/*
