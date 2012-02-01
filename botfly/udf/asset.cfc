@@ -106,18 +106,28 @@
 				break;
 			case "jquery":
 				//jquery 1.7.1
-				addAsset(asset="/botfly/js/jQuery/jQuery.js",sendToHeader=true,priority=arguments.priority);
+				addAsset(asset="/botfly/js/jQuery/jQuery.js",sendToHeader=true,priority=1000);
 				break;
 			case "jqueryUI":
-				//jqueryUI 1.8.16
+				addAsset(asset="/botfly/github/jquery-ui/ui/jquery.ui.core.js",sendToHeader=true,priority=500,assetType='js');
+				addAsset(asset="/botfly/github/jquery-ui/ui/jquery.effects.core.js",sendToHeader=true,priority=499,assetType='js');
+				var coreFiles = "jquery.ui.core.js,jquery.ui.widget.js,jquery.ui.mouse.js,jquery.ui.draggable.js,jquery.ui.droppable.js,jquery.ui.resizable.js,jquery.ui.selectable.js,jquery.ui.sortable.js,jquery.effects.core.js";
+				for(var i=1;i<=listLen(coreFiles);i++){
+					addAsset(asset="/botfly/github/jquery-ui/ui/#trim(listGetAt(coreFiles,i))#",sendToHeader=true,priority=evaluate(250-i),assetType='js');
+				}
 				var files = getJQueryUIFiles('js');
 				for(var i=1;i<=files.recordCount;i++){
-					addAsset(asset="/botfly/github/jquery-ui/ui/#files.name[i]#",sendToHeader=true,priority=arguments.priority,assetType='js');
+					if(!listFind(coreFiles,files.name[i])){
+						addAsset(asset="/botfly/github/jquery-ui/ui/#files.name[i]#",sendToHeader=arguments.sendToHeader,priority=evaluate(200-i),assetType='js');
+					}
 				}
+				var coreFiles = "jquery.ui.core.js,jquery.ui.widget.js,jquery.ui.mouse.js,jquery.ui.draggable.js,jquery.ui.droppable.js,jquery.ui.resizable.js,jquery.ui.selectable.js,jquery.ui.sortable.js,jquery.effects.core.js";
 				var files = getJQueryUIFiles('css');
+				addAsset(asset="/botfly/github/jquery-ui/themes/base/jquery.ui.core.css",sendToHeader=true,priority=100,assetType='css');
+				addAsset(asset="/botfly/github/jquery-ui/themes/base/jquery.ui.theme.css",sendToHeader=true,priority=99,assetType='css');
 				for(var i=1;i<=files.recordCount;i++){
-					if(!listFind('jquery.ui.all.css,jquery.ui.base.css,jquery.ui.core.css',files.name[i])){
-						addAsset(asset="/botfly/github/jquery-ui/themes/base/#files.name[i]#",sendToHeader=arguments.sendToHeader,priority=arguments.priority,assetType='css');
+					if(!listFind('jquery.ui.all.css,jquery.ui.base.css,jquery.ui.core.css,jquery.ui.theme.css',files.name[i])){
+						addAsset(asset="/botfly/github/jquery-ui/themes/base/#files.name[i]#",sendToHeader=true,priority=evaluate(10+i),assetType='css');
 					}
 				}
 				break;
@@ -223,5 +233,6 @@
 		}else{
 			directory name="files" action="list" filter="*.css" directory="#getDirectoryFromPath(expandPath('./'))#/botfly/github/jquery-ui/themes/base/";
 		}
+		return files;
 	}
 }
